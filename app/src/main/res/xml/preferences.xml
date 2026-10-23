@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Home screen">
+        <ListPreference
+            android:defaultValue="4"
+            android:entries="@array/grid_entries"
+            android:entryValues="@array/grid_values"
+            android:key="cols"
+            android:summary="%s"
+            android:title="Grid columns" />
+        <ListPreference
+            android:defaultValue="4"
+            android:entries="@array/grid_entries"
+            android:entryValues="@array/grid_values"
+            android:key="rows"
+            android:summary="%s"
+            android:title="Grid rows" />
+        <ListPreference
+            android:defaultValue="3"
+            android:entries="@array/pages_entries"
+            android:entryValues="@array/pages_values"
+            android:key="pages"
+            android:summary="%s"
+            android:title="Number of pages" />
+        <ListPreference
+            android:defaultValue="standard"
+            android:entries="@array/transition_entries"
+            android:entryValues="@array/transition_values"
+            android:key="transition"
+            android:summary="%s"
+            android:title="Page transition" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_search"
+            android:title="Search bar" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_indicator"
+            android:title="Page indicator" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="dock_dim"
+            android:summary="Dark bar behind the dock icons"
+            android:title="Dock background" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="wallpaper_scroll"
+            android:summary="Wallpaper moves when you swipe pages"
+            android:title="Scrolling wallpaper" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Icons">
+        <ListPreference
+            android:defaultValue="100"
+            android:entries="@array/icon_scale_entries"
+            android:entryValues="@array/icon_scale_values"
+            android:key="icon_scale"
+            android:summary="%s"
+            android:title="Icon size" />
+        <ListPreference
+            android:defaultValue="12"
+            android:entries="@array/label_size_entries"
+            android:entryValues="@array/label_size_values"
+            android:key="label_size"
+            android:summary="%s"
+            android:title="Label size" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_labels"
+            android:title="Show icon labels" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="App drawer">
+        <ListPreference
+            android:defaultValue="4"
+            android:entries="@array/drawer_cols_entries"
+            android:entryValues="@array/drawer_cols_values"
+            android:key="drawer_cols"
+            android:summary="%s"
+            android:title="Drawer columns" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Look">
+        <Preference
+            android:key="wallpapers"
+            android:summary="Holo wallpapers"
+            android:title="Wallpaper" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="lock_enabled"
+            android:summary="Holo ring lock screen over the system lock screen"
+            android:title="Holo lock screen" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Maintenance">
+        <Preference
+            android:key="reset_layout"
+            android:summary="Remove all shortcuts and widgets"
+            android:title="Reset home screen" />
+        <Preference
+            android:key="version"
+            android:summary="2.0"
+            android:title="Build number" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="dev_cat"
+        android:title="Developer">
+        <Preference
+            android:key="debug_menu"
+            android:summary="Performance, log and tools"
+            android:title="Debug menu" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

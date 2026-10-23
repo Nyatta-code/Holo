@@ -3,7 +3,8 @@
     <string name="app_name">Holo Launcher</string>
     <string name="search_hint">Search apps</string>
     <string name="apps">Apps</string>
-    <string name="app_info">App info</string>
-    <string name="uninstall">Uninstall</string>
-    <string name="wallpaper">Wallpaper</string>
+    <string name="widgets">Widgets</string>
+    <string name="settings">Launcher settings</string>
+    <string name="wallpapers">Wallpapers</string>
+    <string name="debug_menu">Debug</string>
 </resources>
