@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Holo Launcher</string>
+    <string name="search_hint">Search apps</string>
+    <string name="apps">Apps</string>
+    <string name="app_info">App info</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="wallpaper">Wallpaper</string>
+</resources>
