@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 
@@ -49,6 +51,49 @@ public class LauncherApp extends Application {
         });
     }
 
+    /**
+     * Some Android 12 builds (seen on Xiaomi) crash every app with an empty Toast inside
+     * android.os.GraphicsEnvironment. That is not our bug, so swallow exactly that
+     * error and keep the main loop running; anything else still reaches the crash screen.
+     */
+    private void installMainLoopGuard() {
+        new Handler(Looper.getMainLooper()).post(() -> {
+            while (true) {
+                try {
+                    Looper.loop();
+                    return;
+                } catch (Throwable t) {
+                    if (isSystemToastBug(t)) {
+                        DebugLog.d("ignored system error: " + t);
+                        continue;
+                    }
+                    if (t instanceof RuntimeException) {
+                        throw (RuntimeException) t;
+                    }
+                    if (t instanceof Error) {
+                        throw (Error) t;
+                    }
+                    throw new RuntimeException(t);
+                }
+            }
+        });
+    }
+
+    private static boolean isSystemToastBug(Throwable t) {
+        for (Throwable c = t; c != null; c = c.getCause()) {
+            String m = String.valueOf(c.getMessage());
+            if (m.contains("ANGLE_FOR_ANDROID_TOAST_MESSAGE")) {
+                return true;
+            }
+            for (StackTraceElement e : c.getStackTrace()) {
+                if (e.getClassName().startsWith("android.os.GraphicsEnvironment")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -56,6 +101,7 @@ public class LauncherApp extends Application {
             return; // the crash report screen runs in its own light process
         }
         installCrashHandler();
+        installMainLoopGuard();
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         prefs = new Prefs(this);
         repo = new AppRepository(this);
