@@ -68,6 +68,14 @@
             android:taskAffinity=""
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".CrashActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:process=":crash"
+            android:taskAffinity=""
+            android:theme="@style/HoloDark" />
+
         <service
             android:name=".LockService"
             android:exported="false"
